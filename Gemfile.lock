@@ -284,6 +284,8 @@ GEM
       ruby-lsp (~> 0.14.0)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    shoulda-matchers (6.1.0)
+      activesupport (>= 5.2.0)
     smart_properties (1.17.0)
     sorbet-runtime (0.5.11279)
     sprockets (4.2.1)
@@ -343,6 +345,7 @@ DEPENDENCIES
   ruby-lsp (~> 0.14.3)
   ruby-lsp-rails (~> 0.3.2)
   ruby-lsp-rspec (~> 0.1.10)
+  shoulda-matchers (~> 6.1)
   sprockets-rails
   stimulus-rails
   turbo-rails

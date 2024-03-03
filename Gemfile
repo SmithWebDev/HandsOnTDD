@@ -74,3 +74,5 @@ end
 
 
 gem "factory_bot_rails", "~> 6.4"
+
+gem "shoulda-matchers", "~> 6.1", :group => :test
