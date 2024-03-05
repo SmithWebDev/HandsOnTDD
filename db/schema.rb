@@ -14,6 +14,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_04_173213) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "pages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title", null: false
+    t.string "slug", null: false
+    t.text "summary", null: false
+    t.text "content", null: false
+    t.boolean "published", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_pages_on_created_at"
+    t.index ["published"], name: "index_pages_on_published"
+    t.index ["slug"], name: "index_pages_on_slug", unique: true
+    t.index ["title"], name: "index_pages_on_title", unique: true
+    t.index ["user_id"], name: "index_pages_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -22,4 +38,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_04_173213) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
   end
+
+  add_foreign_key "pages", "users"
 end
