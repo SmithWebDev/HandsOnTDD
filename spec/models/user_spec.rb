@@ -16,21 +16,25 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { build(:user) }
+  subject { build(:user) }
 
-  # Ensures correct factoy created
-  it 'has a valid factory' do
-    expect(user).to be_valid
-  end
+  # Ensures correct factoy created requires a temporary let statement to build
+  # the factory Ex. let(:user) { build(:user) }
+  # it 'has a valid factory' do
+  #   expect(user).to be_valid
+  # end
 
   # Validations group of tests
   describe 'validations' do
+    it { is_expected.to be_valid }
+
     it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_uniqueness_of :name }
 
     it { is_expected.to validate_presence_of :email }
     it { is_expected.to validate_uniqueness_of :email }
 
+    it { is_expected.to allow_value('foo@bar.com').for(:email) }
     it { is_expected.to_not allow_value('foo@').for(:email) }
     it { is_expected.to_not allow_value('@bar.com').for(:email) }
   end

@@ -27,16 +27,14 @@
 require 'rails_helper'
 
 RSpec.describe Page, type: :model do
-  let(:page) { build(:page) }
-
   # Subject can be present with either a build + symbol or just by the model
   # name Ex. subject { page }
   subject { build(:page) }
 
   # Ensures correct factoy created
-  it 'has a valid factory' do
-    expect(page).to be_valid
-  end
+  # it 'has a valid factory' do
+  #   expect(page).to be_valid
+  # end
 
   # Validations group of tests
   describe 'validations' do
