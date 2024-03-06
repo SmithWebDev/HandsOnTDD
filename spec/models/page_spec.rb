@@ -56,7 +56,7 @@ RSpec.describe Page, type: :model do
 
   # Scope testing
   describe 'scope' do
-    describe 'published' do
+    describe '.published' do
       let(:page1) { create(:page, :published) }
       let(:page2) { create(:page) }
 
@@ -67,6 +67,19 @@ RSpec.describe Page, type: :model do
       it 'returns only published pages' do
         expect(Page.published).to eq([ page1 ])
       end
+    end
+  end
+
+  describe '.ordered' do
+    let(:page1) { create(:page, created_at: 2.days.ago) }
+    let(:page2) { create(:page, created_at: 1.day.ago) }
+
+    before do
+      [ page1, page2 ]
+    end
+
+    it 'returns ordered pages' do
+      expect(Page.ordered).to eq([ page2, page1 ])
     end
   end
 end
