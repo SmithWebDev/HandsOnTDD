@@ -58,6 +58,7 @@ group :development, :test do
   gem 'ruby-lsp', '~> 0.14.3'
   gem 'ruby-lsp-rails', '~> 0.3.2'
   gem 'ruby-lsp-rspec', '~> 0.1.10'
+  gem "rubocop-rails-omakase", require: false
 end
 
 group :development do
