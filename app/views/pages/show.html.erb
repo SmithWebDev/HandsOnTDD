@@ -1,3 +1,5 @@
-<article>
-  <h2><%= @page.title %></h2>
-</article>
+  <%= render partial: 'shared/page',
+    locals: {
+      page: @page,
+      content: @page.content
+    } %>
