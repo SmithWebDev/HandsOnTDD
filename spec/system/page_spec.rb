@@ -9,7 +9,7 @@ RSpec.describe 'Pages' do
     article = find('article')
 
     within article do
-      expect(page).to have_css('h2', test: my_page.title)
+      expect(page).to have_css('h2', text: my_page.title)
     end
   end
 end
