@@ -39,6 +39,8 @@ class Page < ApplicationRecord
   scope :published, -> { where(published: true) }
   scope :ordered, -> { order(created_at: :desc) }
 
+  scope :by_term, ->(term) { [] }
+
   private
 
   def make_slug
