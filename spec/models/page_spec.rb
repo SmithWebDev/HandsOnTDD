@@ -68,18 +68,20 @@ RSpec.describe Page, type: :model do
         expect(Page.published).to eq([ page1 ])
       end
     end
-  end
 
-  describe '.ordered' do
-    let(:page1) { create(:page, created_at: 2.days.ago) }
-    let(:page2) { create(:page, created_at: 1.day.ago) }
+    describe '.ordered' do
+      let(:page1) { create(:page, created_at: 2.days.ago) }
+      let(:page2) { create(:page, created_at: 1.day.ago) }
 
-    before do
-      [ page1, page2 ]
+      before do
+        [ page1, page2 ]
+      end
+
+      it 'returns ordered pages' do
+        expect(Page.ordered).to eq([ page2, page1 ])
+      end
     end
 
-    it 'returns ordered pages' do
-      expect(Page.ordered).to eq([ page2, page1 ])
     end
   end
 end
