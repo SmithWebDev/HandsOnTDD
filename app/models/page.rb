@@ -39,7 +39,7 @@ class Page < ApplicationRecord
   scope :published, -> { where(published: true) }
   scope :ordered, -> { order(created_at: :desc) }
 
-  scope :by_term, ->(term) { [] }
+  scope :by_term, ->(term) { where("content LIKE ?", "%#{term}%") }
 
   private
 

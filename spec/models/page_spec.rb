@@ -82,6 +82,14 @@ RSpec.describe Page, type: :model do
       end
     end
 
+    describe '.by_term' do
+      let(:page) { create(:page, content: 'foo') }
+
+      before { page }
+
+      it 'returns pages for the given term' do
+        expect(Page.by_term('foo')).to eq([ page ])
+      end
     end
   end
 end
