@@ -1,1 +1,8 @@
-<h1>hello</h1>
+<div>
+  <%= form_for(:search, url: search_path, method: :get) do %>
+    <div>
+      <input type="search" name="term">
+      <input type="submit" value="Search">
+    </div>
+  <% end %>
+</div>
