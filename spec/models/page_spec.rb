@@ -83,12 +83,22 @@ RSpec.describe Page, type: :model do
     end
 
     describe '.by_term' do
-      let(:page) { create(:page, content: 'foo') }
+      let(:page1) { create(:page, content: 'foo') }
+      let(:page2) { create(:page, content: 'foo bar') }
+      let(:page3) { create(:page, content: 'foo bar baz') }
 
-      before { page }
+      before do
+        [ page1, page2 ]
+      end
 
       it 'returns pages for the given term' do
-        expect(Page.by_term('foo')).to eq([ page ])
+        expected = [ page1, page2, page3 ]
+        expect(Page.by_term('foo')).to match_array(expected)
+      end
+
+      it 'returns pages for multiple terms' do
+        expected = [ page3 ]
+        expect(Page.by_term('foo baz')).to match_array(expected)
       end
     end
   end
