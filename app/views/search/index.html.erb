@@ -1,11 +1,5 @@
 <% if @pages.any? %>
-  <% @pages.each do |page| %>
-    <%= render partial: 'shared/page',
-                locals: {
-                  page: page,
-                  content: page.summary
-                } %>
-  <% end %>
+  <%= render "shared/pages", locals: {pages: @pages} %>
 <% else %>
   <p>No results found</p>
 <% end %>
