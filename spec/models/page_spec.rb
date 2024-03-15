@@ -101,5 +101,19 @@ RSpec.describe Page, type: :model do
         expect(Page.by_term('foo baz')).to match_array(expected)
       end
     end
+
+    describe '.month_year_list' do
+      let(:result) { Page.month_year_list }
+
+      before do
+        create(:page, created_at: Date.new(2022, 8, 10))
+      end
+
+      it 'returns month and year' do
+        expect(result[0]['month_name']).to eq('August')
+        expect(result[0]['month_number']).to eq('08')
+        expect(result[0]['year']).to eq('2022')
+      end
+    end
   end
 end
