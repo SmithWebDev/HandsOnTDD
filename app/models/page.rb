@@ -51,6 +51,15 @@ class Page < ApplicationRecord
     pages
   end
 
+  def self.month_year_list
+    sql = <<~SQL
+      SELECT
+        TO_CHAR(created_at, 'Month') AS month_name
+      FROM pages
+    SQL
+    ActiveRecord::Base.connection.execute(sql)
+  end
+
   private
 
   def make_slug
