@@ -54,7 +54,7 @@ class Page < ApplicationRecord
   def self.month_year_list
     sql = <<~SQL
       SELECT
-        TO_CHAR(created_at, 'Month') AS month_name
+        TRIM(TO_CHAR(created_at, 'Month')) AS month_name
       FROM pages
     SQL
     ActiveRecord::Base.connection.execute(sql)
