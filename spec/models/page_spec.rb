@@ -108,15 +108,21 @@ RSpec.describe Page, type: :model do
       before do
         create(:page, created_at: Date.new(2022, 8, 10))
         create(:page, created_at: Date.new(2022, 8, 11))
+        create(:page, created_at: Date.new(2021, 3, 13))
       end
+
       it 'returns a list of results' do
-        expect(result.count).to eq(1)
+        expect(result.count).to eq(2)
       end
 
       it 'returns month and year' do
         expect(result[0]['month_name']).to eq('August')
         expect(result[0]['month_number']).to eq('08')
         expect(result[0]['year']).to eq('2022')
+
+        expect(result[1]['month_name']).to eq('March')
+        expect(result[1]['month_number']).to eq('03')
+        expect(result[1]['year']).to eq('2021')
       end
     end
   end
