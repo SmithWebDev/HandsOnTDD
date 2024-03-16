@@ -106,9 +106,10 @@ RSpec.describe Page, type: :model do
       let(:result) { Page.month_year_list }
 
       before do
-        create(:page, created_at: Date.new(2022, 8, 10))
-        create(:page, created_at: Date.new(2022, 8, 11))
-        create(:page, created_at: Date.new(2021, 3, 13))
+        create(:page, created_at: Date.new(2022, 7, 4))
+        create(:page, :published, created_at: Date.new(2022, 8, 10))
+        create(:page, :published, created_at: Date.new(2022, 8, 11))
+        create(:page, :published, created_at: Date.new(2021, 3, 13))
       end
 
       it 'returns a list of results' do
