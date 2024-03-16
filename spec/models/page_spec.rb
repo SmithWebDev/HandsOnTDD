@@ -107,6 +107,10 @@ RSpec.describe Page, type: :model do
 
       before do
         create(:page, created_at: Date.new(2022, 8, 10))
+        create(:page, created_at: Date.new(2022, 8, 11))
+      end
+      it 'returns a list of results' do
+        expect(result.count).to eq(1)
       end
 
       it 'returns month and year' do
