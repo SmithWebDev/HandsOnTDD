@@ -58,6 +58,7 @@ class Page < ApplicationRecord
         TO_CHAR(created_at, 'MM') AS month_number,
         TO_CHAR(created_at, 'YYYY') AS year
       FROM pages
+      WHERE published = true
       ORDER BY year DESC, month_number DESC
     SQL
     ActiveRecord::Base.connection.execute(sql)
