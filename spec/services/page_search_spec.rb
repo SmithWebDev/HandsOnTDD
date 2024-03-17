@@ -29,5 +29,12 @@ RSpec.describe PageSearch do
       PageSearch.search({ term: 'foo' })
       expect(Page).to have_received(:by_term).with('foo')
     end
+
+    it 'valid year and month are sent to .by_year_month' do
+      allot(Page).to receive(:by_year_month)
+      PageSearch.search({ year: 2022, month: 8 })
+
+      expect(Page).to have_received(:by_year_month).with(2022, 8)
+    end
   end
 end
