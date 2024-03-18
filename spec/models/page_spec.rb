@@ -126,5 +126,18 @@ RSpec.describe Page, type: :model do
         expect(result[1]['year']).to eq('2021')
       end
     end
+
+    describe '.by_year_month' do
+      let(:page1) { create(:page, created_at: Date.new(2022, 8, 10)) }
+      let(:page2) { create(:page, created_at: Date.new(2021, 4, 13))  }
+
+      before do
+        [ page1, page2 ]
+      end
+
+      it 'returns pages for the given year and month' do
+        expect(Page.by_year_month(2021, 4)).to match_array([ page2 ])
+      end
+    end
   end
 end

@@ -1,4 +1,4 @@
-<% if @pages.any? %>
+<% if @pages&.any? %>
   <%= render partial: "shared/pages", locals: { pages: @pages } %>
 <% else %>
   <p>No results found</p>
