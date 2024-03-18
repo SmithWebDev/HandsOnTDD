@@ -57,3 +57,4 @@ gem "capybara", "~> 3.40", group: :test
 gem "factory_bot_rails", "~> 6.4"
 gem "shoulda-matchers", "~> 6.1", group: :test
 gem "webdrivers", "~> 5.3", group: :test
+gem "rubocop-rspec", require: false
