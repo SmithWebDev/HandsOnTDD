@@ -51,6 +51,15 @@ class Page < ApplicationRecord
     pages
   end
 
+  scope :by_year_month, ->(year, month) do
+    sql = <<~SQL
+    extract(year from created_at) = ?
+    AND
+    extract(month from created_at) = ?
+    SQL
+    where(sql, year, month)
+  end
+
   def self.month_year_list
     sql = <<~SQL
       SELECT DISTINCT
