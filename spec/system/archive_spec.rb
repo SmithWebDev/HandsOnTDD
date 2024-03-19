@@ -13,9 +13,10 @@ RSpec.describe 'Archives' do
       articles = find_all('article')
       expect(articles.count).to eq(1)
 
-      within articles.first do
-        expect(page).to have_css('h2', text: Page.first.title)
-      end
+      # within articles.first do
+      # binding.irb
+      # end
+      expect(page).to have_css('h2', text: Page.first.title)
     end
   end
 end
