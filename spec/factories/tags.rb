@@ -15,7 +15,6 @@
 #
 FactoryBot.define do
   factory :tag do
-    name { "MyString" }
-    page_tags_count { 1 }
+    sequence(:name) { |n| "Name #{n}" }
   end
 end
