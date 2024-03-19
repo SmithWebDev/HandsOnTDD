@@ -14,4 +14,5 @@
 #  index_tags_on_page_tags_count  (page_tags_count)
 #
 class Tag < ApplicationRecord
+  validates :name, presence: true, uniqueness: true
 end
