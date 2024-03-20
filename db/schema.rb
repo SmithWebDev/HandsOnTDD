@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_19_180317) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_19_202946) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "page_tags", force: :cascade do |t|
+    t.bigint "page_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_id", "tag_id"], name: "index_page_tags_on_page_id_and_tag_id", unique: true
+    t.index ["page_id"], name: "index_page_tags_on_page_id"
+    t.index ["tag_id"], name: "index_page_tags_on_tag_id"
+  end
 
   create_table "pages", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -48,5 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_19_180317) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "page_tags", "pages"
+  add_foreign_key "page_tags", "tags"
   add_foreign_key "pages", "users"
 end
