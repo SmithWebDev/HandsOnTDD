@@ -139,5 +139,10 @@ RSpec.describe Page, type: :model do
         expect(Page.by_year_month(2021, 4)).to match_array([ page2 ])
       end
     end
+
+    describe 'Page Tags' do
+      it { is_expected.to have_many(:page_tags).dependent(:destroy) }
+      it { is_expected.to have_many(:tags).through(:page_tags) }
+    end
   end
 end

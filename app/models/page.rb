@@ -27,6 +27,10 @@
 class Page < ApplicationRecord
   belongs_to :user
 
+  has_many :page_tags, dependent: :destroy
+  has_many :tags, through: :page_tags
+
+
   validates :title,
     presence: true,
     uniqueness: true
