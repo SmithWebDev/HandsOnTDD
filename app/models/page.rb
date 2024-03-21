@@ -25,6 +25,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Page < ApplicationRecord
+  attr_accessor :tags_string
+
   belongs_to :user
 
   has_many :page_tags, dependent: :destroy
@@ -77,6 +79,8 @@ class Page < ApplicationRecord
     ActiveRecord::Base.connection.execute(sql)
   end
 
+  after_save :update_tags
+
   private
 
   def make_slug
@@ -89,5 +93,21 @@ class Page < ApplicationRecord
       .gsub(/-{2,}/, "-")
       .gsub(/^-/, "")
       .chomp("-")
+  end
+
+  def update_tags
+    return if tags_string.blank?
+
+    tags_string.split(",").each do |name|
+      name = name
+        .downcase
+        .gsub(/[_ ]/, "-")
+        .gsub(/[^-a-z0-9+]/, "")
+        .gsub(/-{2,}/, "-")
+        .gsub(/^-/, "")
+        .chomp("-")
+
+      tags << Tag.find_or_create_by(name:)
+    end
   end
 end
