@@ -48,5 +48,16 @@ RSpec.describe 'Pages' do
         expect(page.tags.map(&:name)).to match_array(%w[foo bar])
       end
     end
+
+    context 'when tags are removed' do
+      let(:tag_names) { page.tags.map(&:name) }
+
+      before { page }
+
+      it 'removes tags' do
+        page.update(tags_string: 'foo')
+        expect(tag_names).to match_array(%w[foo])
+      end
+    end
   end
 end

@@ -96,6 +96,7 @@ class Page < ApplicationRecord
   end
 
   def update_tags
+    self.tags = []
     return if tags_string.blank?
 
     tags_string.split(",").each do |name|
