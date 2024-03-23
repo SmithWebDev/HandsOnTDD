@@ -18,4 +18,6 @@ class Tag < ApplicationRecord
   has_many :tags, through: :page_tags
 
   validates :name, presence: true, uniqueness: true
+
+  scope :ordered, -> { order(:name) }
 end
