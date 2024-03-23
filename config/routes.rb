@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "pages/show"
+  get "tags/:name", to: "tags#show", name: /[-a-z0-9_+]*/, as: :tag
   get "/search/:year/:month",
     to: "search#index",
     year: /\d{4}/,
