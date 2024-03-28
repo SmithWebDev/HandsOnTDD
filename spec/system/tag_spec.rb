@@ -19,4 +19,11 @@ RSpec.describe 'Tag', type: :system do
     expect(page).to have_content(page_1.title)
     expect(page).to have_content(page_2.title)
   end
+
+  context 'when a tag does not exist' do
+    it 'redirects to the root path' do
+      visit '/tags/does-not-exist'
+      expect(page).to have_current_path(root_path)
+    end
+  end
 end
