@@ -86,13 +86,7 @@ class Page < ApplicationRecord
   def make_slug
     return unless title
 
-    self.slug = title
-      .downcase
-      .gsub(/[_ ]/, "-")
-      .gsub(/[^-a-z0-9+]/, "")
-      .gsub(/-{2,}/, "-")
-      .gsub(/^-/, "")
-      .chomp("-")
+    self.slug = NameCleanup.clean(title)
   end
 
   def update_tags
@@ -100,13 +94,7 @@ class Page < ApplicationRecord
     return if tags_string.blank?
 
     tags_string.split(",").each do |name|
-      name = name
-        .downcase
-        .gsub(/[_ ]/, "-")
-        .gsub(/[^-a-z0-9+]/, "")
-        .gsub(/-{2,}/, "-")
-        .gsub(/^-/, "")
-        .chomp("-")
+      name = NameCleanup.clean(name)
 
       tags << Tag.find_or_create_by(name:)
     end
