@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :images, only: :show
   get "pages/show"
   get "tags/:name", to: "tags#show", name: /[-a-z0-9_+]*/, as: :tag
   get "/search/:year/:month",
