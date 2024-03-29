@@ -8,4 +8,5 @@
 #  updated_at :datetime         not null
 #
 class Image < ApplicationRecord
+  validates :name, presence: true
 end
