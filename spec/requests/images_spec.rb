@@ -6,6 +6,13 @@ RSpec.describe 'Images' do
     get image_path(Image.last)
 
     expect(response).to be_successful
-    expect(response.content).to eq('image/jpeg')
+    expect(response.content_type).to eq('image/jpeg')
+  end
+
+  it 'returns a missing image if the image does not exist' do
+    get image_path(0)
+
+    expect(response).to be_successful
+    expect(response.content_type).to eq('image/jpeg')
   end
 end
