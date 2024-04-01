@@ -15,12 +15,17 @@
 #  index_users_on_email  (email) UNIQUE
 #  index_users_on_name   (name) UNIQUE
 #
+require "bcrypt"
+
 class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true, format: { with: /\A\S+@\S+\z/ }
 
   def password=(password)
-    self.password_salt = "salt"
-    self.password_hash = "#{password_salt}#{password}"
+    self.password_salt = BCrypt::Engine.generate_salt
+    self.password_hash = BCrypt::Engine.hash_secret(
+      password,
+      password_salt
+    )
   end
 end
