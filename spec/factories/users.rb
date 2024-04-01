@@ -2,11 +2,13 @@
 #
 # Table name: users
 #
-#  id         :bigint           not null, primary key
-#  email      :string
-#  name       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id            :bigint           not null, primary key
+#  email         :string
+#  name          :string
+#  password_hash :string
+#  password_salt :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 # Indexes
 #
