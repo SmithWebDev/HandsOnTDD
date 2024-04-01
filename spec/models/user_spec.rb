@@ -2,11 +2,13 @@
 #
 # Table name: users
 #
-#  id         :bigint           not null, primary key
-#  email      :string
-#  name       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id            :bigint           not null, primary key
+#  email         :string
+#  name          :string
+#  password_hash :string
+#  password_salt :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 # Indexes
 #
@@ -37,5 +39,17 @@ RSpec.describe User, type: :model do
     it { is_expected.to allow_value('foo@bar.com').for(:email) }
     it { is_expected.to_not allow_value('foo@').for(:email) }
     it { is_expected.to_not allow_value('@bar.com').for(:email) }
+  end
+
+  describe 'set a password' do
+    let(:user) { build(:user) }
+
+    it 'sets a password' do
+      user.password = 'changeme'
+      user.save!
+
+      expect(user.password_salt).to be_present
+      expect(user.password_hash).to be_present
+    end
   end
 end
