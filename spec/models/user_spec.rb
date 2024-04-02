@@ -52,4 +52,18 @@ RSpec.describe User, type: :model do
       expect(user.password_hash).to be_present
     end
   end
+
+  describe '.authenticate' do
+    let(:user) { build(:user) }
+    let(:password) { 'changeme' }
+
+    before do
+      user.password = password
+      user.save!
+    end
+
+    it 'can authenticate' do
+      expect(User.authenticate(user.email, password)).to eq(user)
+    end
+  end
 end
