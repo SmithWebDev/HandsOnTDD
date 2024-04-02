@@ -65,5 +65,9 @@ RSpec.describe User, type: :model do
     it 'can authenticate' do
       expect(User.authenticate(user.email, password)).to eq(user)
     end
+
+    it 'unknown email fails authentication' do
+      expect(User.authenticate('foo@bar.com', password)).to be_nil
+    end
   end
 end
